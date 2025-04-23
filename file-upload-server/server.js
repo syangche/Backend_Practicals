@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -11,7 +10,6 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-// In server.js, replace the simple cors() call with:
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   methods: ['GET', 'POST'],
@@ -30,9 +28,9 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     // Create unique filename
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    const fileExt = path.extname(file.originalname);
-    cb(null, `${uniqueSuffix}${fileExt}`);
+    // const timestamp = Date.now();
+    const originalName = file.originalname;
+    cb(null, `${originalName}`);
   }
 });
 
